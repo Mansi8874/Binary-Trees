@@ -1,0 +1,61 @@
+import java.util.*;
+public class Solution {
+
+	public static void printLevelWise(BinaryTreeNode<Integer> root) {
+//
+//         Queue<BinaryTreeNode<Integer>> q = new LinkedList<BinaryTreeNode<Integer>>();
+//         q.add(root);
+        
+//         while(!q.isEmpty()){
+            
+//             BinaryTreeNode<Integer> temp = q.poll();
+//             System.out.print(temp.data+":");
+//             //left side
+//             if(temp.left!=null){
+//                 q.add(temp.left);
+//                 System.out.print("L:"+temp.left.data);
+//             }else{
+//                 System.out.print("L:-1");
+//             }
+            
+//             //right side
+//             if(temp.right!=null){
+//                 q.add(temp.right);
+//                 System.out.print(",R:"+temp.right.data);
+//             }else{
+//                 System.out.print(",R:-1");
+//             }
+//             System.out.println();
+//         }
+        if(root==null){
+            return;
+        }
+        QueueUsingLL<BinaryTreeNode<Integer>> pendingNode=new QueueUsingLL<BinaryTreeNode<Integer>>();
+        
+        pendingNode.enqueue(root);
+        while(!pendingNode.isEmpty()){
+            BinaryTreeNode<Integer> firstNode=null;
+            try{
+                firstNode=pendingNode.dequeue();
+                System.out.print(firstNode.data+":"); 
+            }catch(QueueEmptyException e){
+                
+            }
+            if(firstNode.left!=null){
+                pendingNode.enqueue(firstNode.left);
+                System.out.print("L:"+firstNode.left.data);
+            }else{
+                System.out.print("L:-1");  
+            }
+            if(firstNode.right!=null){
+                 pendingNode.enqueue(firstNode.right);
+                 System.out.print(",R:"+firstNode.right.data);
+            }else{
+                 System.out.print(",R:-1");
+             }
+            System.out.println();
+        }
+        
+	}
+	
+}

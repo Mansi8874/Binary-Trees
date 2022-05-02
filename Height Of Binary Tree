@@ -1,0 +1,22 @@
+public class Solution {
+
+	public static int height(BinaryTreeNode<Integer> root) {
+		//Your code goes here
+        if(root==null){
+            return 0;
+        }
+        if(root.left==null && root.right==null){
+            return 1;
+        }
+        int height=1;
+        int leftHeight=height(root.left);
+        int rightHeight=height(root.right);
+        if(leftHeight<rightHeight){
+            height+=rightHeight;
+        }else{
+            height+=leftHeight;
+        }
+        return height;
+	}
+
+}
